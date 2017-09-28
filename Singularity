@@ -43,7 +43,7 @@ else
 	echo "using existing working copy in $GITDIR"
 	# IMO we shouldn't pull it here
 	# the user "owns" that directory, so we better not mess with it
-	/bin/echo -e '\e[1;33mplease "git pull" it manually if necessary\e[0m'
+	/bin/echo -e '\e[1;33mplease "git pull" it manually if necessary!\e[0m'
 	cd "$GITDIR"
 fi
 
@@ -52,11 +52,10 @@ echo "===================================================="
 /bin/echo -en '\e[1m'
 echo "IF THIS IS YOUR INITAL RUN, PELASE DO THE FOLLOWING:"
 /bin/echo -e '\e[0;32m'
-echo " 1) Open up a clean workspace"
-echo " 2) Import the SARA code as 'Existing Maven Project'"
-echo " 3) Open 'bwfdm.sara.Application' and right-click 'Run' -> 'Java Application'"
-echo " 4) Connect to 'http://localhost:8080'"
-echo " 5) Congrats ... you're done!"
+echo " 1) Import the SARA code as 'Existing Maven Project'"
+echo " 2) Open 'bwfdm.sara.Application' and right-click 'Run' -> 'Java Application'"
+echo " 3) Wait for Spring to start, connect to 'http://localhost:8080'"
+echo " 4) Congrats ... you're done!"
 /bin/echo -e '\e[0m'
 
 echo "calling eclipse"
