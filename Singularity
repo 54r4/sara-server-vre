@@ -17,34 +17,52 @@ mv /tmp/eclipse /opt
 export PATH="/opt/eclipse:$PATH"
 
 %runscript
-if [ "$#" -eq 0 ]; then
-  echo "calling without gitdir, checking out git..."
-  GITDIR="/tmp/sara-server"
-  rm -rf "$GITDIR" && mkdir -p "$GITDIR" && cd "$GITDIR"
-  git clone git@git.uni-konstanz.de:sara/SARA-server.git $GITDIR
-  git submodule update --init
+if [ "_$1" = _ ]; then
+	BASE=/tmp/sara
 else
-  echo "calling with gitdir=$1..."
-  GITDIR="$1"
+	BASE="$1"
+	shift
 fi
 
-cd $GITDIR
-git pull
-git submodule update
+if [ "$#" -eq 0 ]; then
+	GITDIR="$BASE/sara-server"
+	if ! [ -d "$GITDIR" ]; then
+		echo "checking out to $GITDIR..."
+		mkdir -p "$GITDIR"
+		git clone git@git.uni-konstanz.de:sara/SARA-server.git "$GITDIR"
+		cd "$GITDIR"
+		git submodule update --init
+	else
+		echo "updating $GITDIR..."
+		cd "$GITDIR"
+		git pull
+		git submodule update
+	fi
+else
+	GITDIR="$1"
+	echo "using existing working copy in $GITDIR"
+	# IMO we shouldn't pull it here
+	# the user "owns" that directory, so we better not mess with it
+	/bin/echo -e '\e[1;33mplease "git pull" it manually if necessary\e[0m'
+	cd "$GITDIR"
+fi
 
-echo "==========================================="
-echo "IF THIS IS YOUR INITAL RUN DO THE FOLLOWING:"
+/bin/echo -e '\e[32m' # sometimes, dash sucks!
+echo "===================================================="
+/bin/echo -en '\e[1m'
+echo "IF THIS IS YOUR INITAL RUN, PELASE DO THE FOLLOWING:"
+/bin/echo -e '\e[0;32m'
 echo " 1) Open up a clean workspace"
-echo " 2) Import the SARA code as 'Maven Project'"
-echo " 3) Set 'bwfdm.sara.Application under 'Run'-'Run Configuration'"
-echo " 4) 'Run as' select 'SpringBoot App' -> connect to 'localhost:8080'"
+echo " 2) Import the SARA code as 'Existing Maven Project'"
+echo " 3) Open 'bwfdm.sara.Application' and right-click 'Run' -> 'Java Application'"
+echo " 4) Connect to 'http://localhost:8080'"
 echo " 5) Congrats ... you're done!"
+/bin/echo -e '\e[0m'
 
 echo "calling eclipse"
-/opt/eclipse/eclipse # -clean -purgeHistory -noSplash -data /tmp/sara-server #-application bwfdm.sara.Application
+/opt/eclipse/eclipse -configuration "$BASE/eclipseconfig" -data "$BASE"
 echo "Exiting Container..."
 sync
-sleep 3
+sleep 3 # make user think we're doing this properly
 echo "..."
-sleep 3
-
+sleep 3 # it's really there to give all Java processes a chance to quit
