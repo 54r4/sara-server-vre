@@ -5,7 +5,7 @@ From: ubuntu:16.10
 eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
 
 %post
-apt-get update && apt-get -y install git wget vim openjdk-8-jdk
+apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce
 mkdir -p /opt
 cd /tmp
 wget http://www.uni-ulm.de/~nsn25/SARA/eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
@@ -50,7 +50,7 @@ fi
 /bin/echo -e '\e[32m' # sometimes, dash sucks!
 echo "===================================================="
 /bin/echo -en '\e[1m'
-echo "IF THIS IS YOUR INITAL RUN, PELASE DO THE FOLLOWING:"
+echo "IF THIS IS YOUR INITAL RUN, PLEASE DO THE FOLLOWING:"
 /bin/echo -e '\e[0;32m'
 echo " 1) Import the SARA code as 'Existing Maven Project'"
 echo " 2) Open 'bwfdm.sara.Application' and right-click 'Run' -> 'Java Application'"
@@ -62,6 +62,3 @@ echo "calling eclipse"
 /opt/eclipse/eclipse -configuration "$BASE/eclipseconfig" -data "$BASE"
 echo "Exiting Container..."
 sync
-sleep 3 # make user think we're doing this properly
-echo "..."
-sleep 3 # it's really there to give all Java processes a chance to quit
