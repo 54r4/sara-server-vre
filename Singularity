@@ -5,7 +5,7 @@ From: ubuntu:16.10
 eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
 
 %post
-apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce
+apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce python python-pycurl
 mkdir -p /opt
 cd /tmp
 wget http://www.uni-ulm.de/~nsn25/SARA/eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
