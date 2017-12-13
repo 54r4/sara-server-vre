@@ -1,16 +1,14 @@
 Bootstrap: docker
 From: ubuntu:16.10
 
-%file 
-eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
-
 %post
 apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce python python-pycurl
 mkdir -p /opt
 cd /tmp
-wget http://www.uni-ulm.de/~nsn25/SARA/eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
-sha256sum eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz # c2435e8f52fbe94859e8786d3c631c3c3b592c5f58d4c49de615fc414f6dfe3c
-tar -xzf eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
+#wget http://www.uni-ulm.de/~nsn25/SARA/eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
+wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/oxygen/1a/eclipse-jee-oxygen-1a-linux-gtk-x86_64.tar.gz -O e.tgz
+sha256sum e.tgz # c2435e8f52fbe94859e8786d3c631c3c3b592c5f58d4c49de615fc414f6dfe3c
+tar -xzf e.tgz
 mv /tmp/eclipse /opt
 
 %environment
