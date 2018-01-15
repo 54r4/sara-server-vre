@@ -10,6 +10,7 @@ wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/oxygen/1a/ecli
 sha256sum e.tgz # c2435e8f52fbe94859e8786d3c631c3c3b592c5f58d4c49de615fc414f6dfe3c
 tar -xzf e.tgz
 mv /tmp/eclipse /opt
+mkdir -p /lib/modules # required for udocker to run 
 
 %environment
 export PATH="/opt/eclipse:$PATH"
