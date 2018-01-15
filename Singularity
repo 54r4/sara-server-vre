@@ -15,6 +15,8 @@ wget https://raw.githubusercontent.com/indigo-dc/udocker/v1.1.1/udocker.py -O /u
 chmod +x /usr/bin/udocker
 udocker --allow-root mkrepo /udocker
 udocker --allow-root --repo=/udocker pull c1t4r/sara-server-vre
+rmdir /udocker/container
+ln -s /tmp /udocker/container
 
 %environment
 export PATH="/opt/eclipse:$PATH"

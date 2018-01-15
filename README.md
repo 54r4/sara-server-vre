@@ -27,5 +27,5 @@ singularity bootstrap sara-server-vre.img ./Singularity
 ## Build local image (Singularity 2.4)
 
 ```
-TODO
+sudo singularity build sara-server-vre.simg ./Singularity
 ```
