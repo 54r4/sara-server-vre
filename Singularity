@@ -11,6 +11,10 @@ sha256sum e.tgz # c2435e8f52fbe94859e8786d3c631c3c3b592c5f58d4c49de615fc414f6dfe
 tar -xzf e.tgz
 mv /tmp/eclipse /opt
 mkdir -p /lib/modules # required for udocker to run 
+wget https://raw.githubusercontent.com/indigo-dc/udocker/v1.1.1/udocker.py -O /usr/bin/udocker
+chmod +x /usr/bin/udocker
+udocker mkrepo /udocker
+udocker --repo=/udocker pull c1t4r/sara-server-vre
 
 %environment
 export PATH="/opt/eclipse:$PATH"
