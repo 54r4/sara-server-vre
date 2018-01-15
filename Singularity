@@ -13,8 +13,8 @@ mv /tmp/eclipse /opt
 mkdir -p /lib/modules # required for udocker to run 
 wget https://raw.githubusercontent.com/indigo-dc/udocker/v1.1.1/udocker.py -O /usr/bin/udocker
 chmod +x /usr/bin/udocker
-udocker mkrepo /udocker
-udocker --repo=/udocker pull c1t4r/sara-server-vre
+udocker --allow-root mkrepo /udocker
+udocker --allow-root --repo=/udocker pull c1t4r/sara-server-vre
 
 %environment
 export PATH="/opt/eclipse:$PATH"
