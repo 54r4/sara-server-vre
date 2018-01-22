@@ -16,7 +16,7 @@ chmod +x /usr/bin/udocker
 udocker --allow-root mkrepo /udocker
 udocker --allow-root --repo=/udocker pull c1t4r/sara-server-vre
 rmdir /udocker/containers
-ln -s /tmp /udocker/containers
+ln -s /tmp/udocker_containers /udocker/containers
 
 %environment
 export PATH="/opt/eclipse:$PATH"
