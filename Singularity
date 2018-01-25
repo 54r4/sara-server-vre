@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: ubuntu:16.10
+From: ubuntu:16.04
 
 %post
 apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce python python-pycurl
