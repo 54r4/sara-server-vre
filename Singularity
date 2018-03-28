@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:16.04
 
 %post
-apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce python python-pycurl
+apt-get update && apt-get -y install git wget vim openjdk-8-jdk gtk3-engines-xfce python python-pycurl xterm
 mkdir -p /opt
 cd /tmp
 #wget http://www.uni-ulm.de/~nsn25/SARA/eclipse-jee-oxygen-1-linux-gtk-x86_64.tar.gz
@@ -31,10 +31,14 @@ fi
 
 if [ "$#" -eq 0 ]; then
 	GITDIR="$BASE/sara-server"
+        if [ -z "${GIT_ARCHIVE_URL}" ]; then 
+                GIT_ARCHIVE_URL="git@git.uni-konstanz.de:sara/SARA-server.git"
+        fi
+
 	if ! [ -d "$GITDIR" ]; then
 		echo "checking out to $GITDIR..."
 		mkdir -p "$GITDIR"
-		git clone git@git.uni-konstanz.de:sara/SARA-server.git "$GITDIR"
+		git clone "$GIT_ARCHIVE_URL" "$GITDIR"
 		cd "$GITDIR"
 		git submodule update --init
 	else
